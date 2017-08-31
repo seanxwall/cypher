@@ -1,0 +1,64 @@
+def alphabet_position(letter):
+    lowercase = "abcdefghijklmnopqrstuvwxyz"                               # lower case reference
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"                               # upper case reference
+    position = 0
+    found = False
+    if letter in lowercase:                                                # checks if letter is lowercase
+        while position < len(lowercase) and not found:
+            if lowercase[position] == letter:
+                found = True                                                    # stops when letter is found
+            else:
+                position += 1
+        if found:
+            return position                                                     # returns the position of the letter in the lower case alphabet
+    if letter in uppercase:                                                # checks if letter is uppercase
+        while position < len(uppercase) and not found:
+            if uppercase[position] == letter:
+                found = True                                                    # stops when letter is found
+            else:
+                position += 1
+        if found:
+            return position
+
+
+def rotate_character(char, rot):
+    lowercase = "abcdefghijklmnopqrstuvwxyz"                               # lower case reference
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"                               # upper case reference
+    char_pos = alphabet_position(char)
+    if char in lowercase:                                                  # checks if letter is lower case
+        rotated = char_pos + rot
+        if rotated >= 26:
+            rotated = (char_pos + rot) % 26                                     # loops around to the beginning if it reaches the end of the alphabet
+            return lowercase[rotated]                                      # returns the character in the rotated position (maintaining case)
+        else:
+            return lowercase[rotated]                                      # returns the character in the rotated position (maintaining case)
+
+    elif char in uppercase:                                                # checks if letter is upper case
+        rotated = char_pos + rot
+        if rotated >= 26:
+            rotated = (char_pos + rot) % 26                                     # loops around to the beginning if it reaches the end of the alphabet
+            return uppercase[rotated]                                      # returns the character in the rotated position (maintaining case)
+        else:
+            return uppercase[rotated]                                      # returns the character in the rotated position (maintaining case)
+
+    else:
+        rotated = char
+        return char                                                             # returns the original character if it is anything other than an
+
+
+def encrypt(text, rot):
+    encrypted_text = ""
+    for char in text:
+        letter = rotate_character(char, rot)                                    # calls the rotate_character function using (text) char and given rotation
+        encrypted_text = encrypted_text + letter                                    # builds the encrypted text
+    return encrypted_text
+
+def main():
+    text = input("Type a message:  ")
+    rot = int(input("Rotate by: "))
+    print(encrypt(text, rot))
+
+if __name__ == '__main__':
+    main()
+
+      
