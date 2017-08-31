@@ -1,0 +1,21 @@
+def alphabet_position(letter):
+    lowercase = "abcdefghijklmnopqrstuvwxyz"                               # lower case reference
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"                               # upper case reference
+    position = 0
+    found = False
+    if letter in lowercase:                                                # checks if letter is lowercase
+        while position < len(lowercase) and not found:
+            if lowercase[position] == letter:
+                found = True                                                    # stops when letter is found
+            else:
+                position += 1
+        if found:
+            return position                                                     # returns the position of the letter in the lower case alphabet
+    if letter in uppercase:                                                # checks if letter is uppercase
+        while position < len(uppercase) and not found:
+            if uppercase[position] == letter:
+                found = True                                                    # stops when letter is found
+            else:
+                position += 1
+        if found:
+            return position
